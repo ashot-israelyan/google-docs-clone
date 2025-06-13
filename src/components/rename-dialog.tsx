@@ -3,6 +3,7 @@
 import { FC, FormEvent, ReactNode, useState } from 'react';
 
 import { useMutation } from 'convex/react';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -40,10 +41,10 @@ export const RenameDialog: FC<RenameDialogProps> = ({ documentId, children, init
     update({ id: documentId, title: title.trim() || 'Untitled' })
       .then(() => {
         setOpen(false);
+        toast.success('Document updated');
       })
-      .finally(() => {
-        setIsUpdating(false);
-      });
+      .catch(() => toast.error('Something went wrong'))
+      .finally(() => setIsUpdating(false));
   };
 
   return (
