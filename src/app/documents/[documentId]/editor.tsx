@@ -35,6 +35,7 @@ interface EditorProps {
 export const Editor: FC<EditorProps> = ({ initialContent }) => {
   const liveblocks = useLiveblocksExtension({
     initialContent,
+    offlineSupport_experimental: true,
   });
   const { setEditor } = useEditorStore();
   const leftMargin = useStorage((root) => root.leftMargin);
