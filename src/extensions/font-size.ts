@@ -1,8 +1,6 @@
 import '@tiptap/extension-text-style';
 import { Extension } from '@tiptap/react';
 
-import { faIR } from './../../node_modules/react-day-picker/src/persian';
-
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     fontSize: {
