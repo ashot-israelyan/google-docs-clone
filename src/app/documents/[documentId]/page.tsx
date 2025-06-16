@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { Navbar } from '@/app/documents/[documentId]/navbar';
-import { Room } from '@/app/documents/[documentId]/Room';
+import { Room } from '@/app/documents/[documentId]/room';
 
 import { Editor } from './editor';
 import { Toolbar } from './toolbar';
