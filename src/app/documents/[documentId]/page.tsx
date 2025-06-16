@@ -27,10 +27,6 @@ const DocumentIdPage: FC<DocumentIdPage> = async ({ params }) => {
     { token }
   );
 
-  if (!preloadedDocument) {
-    throw new Error('Document not found');
-  }
-
   return <Document preloadedDocument={preloadedDocument} />;
 };
 
