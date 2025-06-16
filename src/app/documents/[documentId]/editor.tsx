@@ -1,5 +1,7 @@
 'use client';
 
+import { FC } from 'react';
+
 import { useStorage } from '@liveblocks/react';
 import { useLiveblocksExtension } from '@liveblocks/react-tiptap';
 import { Color } from '@tiptap/extension-color';
@@ -26,8 +28,14 @@ import { FontSize } from '@/extensions/font-size';
 import { LineHeight } from '@/extensions/line-height';
 import { useEditorStore } from '@/store/use-editor-store';
 
-export const Editor = () => {
-  const liveblocks = useLiveblocksExtension();
+interface EditorProps {
+  initialContent?: string;
+}
+
+export const Editor: FC<EditorProps> = ({ initialContent }) => {
+  const liveblocks = useLiveblocksExtension({
+    initialContent,
+  });
   const { setEditor } = useEditorStore();
   const leftMargin = useStorage((root) => root.leftMargin);
   const rightMargin = useStorage((root) => root.rightMargin);
