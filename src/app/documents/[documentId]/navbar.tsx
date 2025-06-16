@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { BsFilePdf } from 'react-icons/bs';
 
+import { Avatars } from '@/app/documents/[documentId]/avatars';
 import {
   Menubar,
   MenubarContent,
@@ -221,6 +222,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-3">
+        <Avatars />
         <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"

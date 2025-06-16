@@ -1,5 +1,3 @@
-import { NextResponse } from 'next/server';
-
 import { auth, currentUser } from '@clerk/nextjs/server';
 import { Liveblocks } from '@liveblocks/node';
 import { ConvexHttpClient } from 'convex/browser';
@@ -15,20 +13,20 @@ export async function POST(req: Request) {
   const { sessionClaims } = await auth();
 
   if (!sessionClaims) {
-    return new NextResponse('Unauthorized', { status: 401 });
+    return new Response('Unauthorized', { status: 401 });
   }
 
   const user = await currentUser();
 
   if (!user) {
-    return new NextResponse('Unauthorized', { status: 401 });
+    return new Response('Unauthorized', { status: 401 });
   }
 
   const { room } = await req.json();
   const document = await convex.query(api.documents.getById, { id: room });
 
   if (!document) {
-    return new NextResponse('Unauthorized', { status: 401 });
+    return new Response('Unauthorized', { status: 401 });
   }
 
   const isOwner = document.ownerId === user.id;
@@ -37,12 +35,12 @@ export async function POST(req: Request) {
   );
 
   if (!isOwner && !isOrganizationMember) {
-    return new NextResponse('Unauthorized', { status: 401 });
+    return new Response('Unauthorized', { status: 401 });
   }
 
   const session = liveblocks.prepareSession(user.id, {
     userInfo: {
-      name: user.fullName ?? 'Anonymous',
+      name: user.fullName ?? user.primaryEmailAddress?.emailAddress ?? 'Anonymous',
       avatar: user.imageUrl,
     },
   });
@@ -51,5 +49,5 @@ export async function POST(req: Request) {
 
   const { body, status } = await session.authorize();
 
-  return new NextResponse(body, { status });
+  return new Response(body, { status });
 }
