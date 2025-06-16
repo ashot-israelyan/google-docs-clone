@@ -25,6 +25,7 @@ import {
 import { BsFilePdf } from 'react-icons/bs';
 
 import { Avatars } from '@/app/documents/[documentId]/avatars';
+import { Inbox } from '@/app/documents/[documentId]/inbox';
 import {
   Menubar,
   MenubarContent,
@@ -223,6 +224,7 @@ export const Navbar = () => {
       </div>
       <div className="flex items-center gap-3">
         <Avatars />
+        <Inbox />
         <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"
